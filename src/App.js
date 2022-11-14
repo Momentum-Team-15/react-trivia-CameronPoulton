@@ -8,8 +8,7 @@ import { Questions } from './components/Questions';
 function App() {
   const [category, setCategory] = useState([])
   const [SelectedCategoryId, setSelectedCategoryId] = useState([])
-  // const [questions, setQuestions] = useState([])
-  const [Url, setUrl] = useState([])
+  const [questions, setQuestions] = useState([])
 
   useEffect(() => {
     axios.get('https://opentdb.com/api_category.php').then(res => setCategory(res.data.trivia_categories))
@@ -21,14 +20,14 @@ function App() {
         {SelectedCategoryId ? (
           <Questions
             selectedCategoryId={setSelectedCategoryId}
-            setSelectedCategoryId={setSelectedCategoryId} />
+            setSelectedCategoryId={setSelectedCategoryId}
+            questions={questions} />
             ) : (
             <>  
             {category &&
               <Categories
                 setSelectedCategoryId={setSelectedCategoryId}
-                category={category}
-                setUrl={setUrl}/>}
+                category={category} />}
             </>
           )}
       </section>
